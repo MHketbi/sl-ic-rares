@@ -399,7 +399,7 @@ function setup()
 
     for (var i = 0; i < nextRares.length; i++)
     {
-        dt.add(20, "minutes");
+        dt.add(10, "minutes");
 
         var nextRare = nextRares[i];
         var alreadySpawned = now.unix() >= dt.unix();
@@ -503,7 +503,7 @@ $(document).on("click", "#btn-sync-eu, #btn-sync-na", function(e)
     {
         throw new Error("Invalid button id: " + btnId);
     }
-    var dt = moment(data.dt).add(20, "minutes");
+    var dt = moment(data.dt).add(10, "minutes");
     var now = moment();
 
     var index = getRareIndex(data.id);
@@ -511,12 +511,12 @@ $(document).on("click", "#btn-sync-eu, #btn-sync-na", function(e)
 
     while (dt.unix() < now.unix())
     {
-        dt.add(20, "minutes");
+        dt.add(10, "minutes");
         index = getNextRareIndex(rare.id);
         rare = rares[index];
     }
 
-    dt.subtract(20, "minutes");
+    dt.subtract(10, "minutes");
 
     $("#select-last-rare").val(rare.id);
     $("#input-last-at").val(dt.format("HH:mm"));
@@ -566,7 +566,7 @@ $(document).ready(function()
     }
 
     var now = moment();
-    var modMins = now.minutes() % 20;
+    var modMins = now.minutes() % 10;
     now.subtract(modMins, "minutes");
 
     $("#input-last-at").val(now.format("HH:mm"));
